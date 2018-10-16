@@ -38,10 +38,10 @@ export default {
     fetch({ commit }, id) {
       commit('reset')
       api.playlists.fetch(id)
-        .then(data => {
-          commit('title', data.playlist.title)
-          commit('thumbnails', data.playlist.thumbnails)
-          commit('videos', data.playlist.items)
+        .then(playlist => {
+          commit('title', playlist.title)
+          commit('thumbnails', playlist.thumbnails)
+          commit('videos', playlist.items)
         })
         .catch(err => {
           commit('reset')

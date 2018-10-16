@@ -8,7 +8,7 @@ export default {
 async function fetch(playlistId) {
   return Axios.get(`${apiURL}/playlists/${playlistId}`)
     .then(response => {
-      return response.data
+      return response.data.playlist
     })
     .catch(err => {
       throw(new Error("Invalid Playlist ID"))
