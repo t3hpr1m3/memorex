@@ -1,0 +1,38 @@
+version: '3.5'
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - MIX_ENV=dev
+      - 'MEMOREX_API_URL=http://memorex-api:4000/api/v1'
+    networks:
+      - memorex-exposed
+      - memorex-api
+    ports:
+      - "4003:8080"
+    volumes:
+      - type: bind
+        source: .
+        target: /usr/src/app
+      - type: volume
+        source: _build
+        target: /usr/src/app/_build
+        volume:
+          nocopy: true
+      - type: volume
+        source: deps
+        target: /usr/src/app/deps
+        volume:
+          nocopy: true
+networks:
+  memorex-exposed:
+    driver: bridge
+    name: memorex-exposed
+  memorex-api:
+    driver: bridge
+    name: memorex-api
+    internal: true
+volumes:
+  _build:
+  deps:
