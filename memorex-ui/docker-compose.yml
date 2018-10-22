@@ -5,7 +5,7 @@ services:
       context: .
     environment:
       - MIX_ENV=dev
-      - 'MEMOREX_API_URL=http://memorex-api:4000/api/v1'
+      - 'MEMOREX_API_URL=http://memorex-playlist-api:4000/v1'
     networks:
       - memorex-exposed
       - memorex-api
