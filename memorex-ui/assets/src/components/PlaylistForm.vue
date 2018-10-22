@@ -22,7 +22,10 @@ export default {
   },
   methods: {
     submit() {
-      return this.$store.dispatch("Playlists/fetch", this.playlistId);
+      return this.$store.dispatch(
+        "Playlists/fetch",
+        encodeURIComponent(this.playlistId)
+      );
     }
   }
 };
