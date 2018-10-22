@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  testapp:
+    build:
+      context: .
+    environment:
+      - MIX_ENV=test
+      - YOUTUBE_API_KEY=API_KEY
+    networks:
+      - cl-exposed
+      - cl-api
+    volumes:
+      - type: bind
+        source: .
+        target: /usr/src/app
+      - type: volume
+        source: test_build
+        target: /usr/src/app/_build
+        volume:
+          nocopy: true
+      - type: volume
+        source: testdeps
+        target: /usr/src/app/deps
+        volume:
+          nocopy: true
+networks:
+  cl-exposed:
+    driver: bridge
+    name: cl-exposed
+  cl-api:
+    driver: bridge
+    name: cl-api
+    internal: true
+volumes:
+  test_build:
+  testdeps:
