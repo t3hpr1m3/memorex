@@ -12,7 +12,7 @@ services:
         aliases:
           - memorex-playlist-api
     ports:
-      - "4003:4000"
+      - "4004:4000"
     volumes:
       - type: bind
         source: .
